@@ -7,19 +7,13 @@ const login = require("./Controllers/loginAPI");
 const app = express();
 
 require("dotenv").config();
-const corsconfig = {
-  origin: "*",
-  Credential: true,
-  methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
-};
 
-app.use(cors(corsconfig));
+app.use(cors());
 // Middleware to parse JSON request bodies
 app.use(express.json());
 
 // login
 app.use("/login", login);
-
 
 const PORT = process.env.PORT || 6000;
 const DBURL = process.env.DB_URL;

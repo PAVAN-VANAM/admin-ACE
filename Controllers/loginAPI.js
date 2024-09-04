@@ -11,7 +11,7 @@ const timeLog = (req, res, next) => {
 router.use(timeLog);
 
 // Login endpoint
-router.post("/", async (req, res) => {
+router.post("", async (req, res) => {
   const { email, password } = req.body;
 
   try {
