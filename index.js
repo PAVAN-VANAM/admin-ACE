@@ -6,11 +6,10 @@ const cors = require("cors");
 const app = express();
 
 const corsconfig = {
-  origin : "*",
-  Credential : true,
-  methods : ["GET", "POST", "PUT", "DELETE", "PATCH"],
-}
-app.options("", cors(corsconfig));
+  origin: "*",
+  Credential: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+};
 
 app.use(cors(corsconfig));
 // Middleware to parse JSON request bodies
