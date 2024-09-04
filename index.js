@@ -1,6 +1,8 @@
 // import  module
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
+app.use(cors());
 // use express module as app
 const app = express();
 
