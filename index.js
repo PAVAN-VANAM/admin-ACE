@@ -5,7 +5,7 @@ const cors = require("cors");
 const login = require("./Controllers/loginAPI");
 // use express module as app
 const app = express();
-
+const register = require("./Controllers/RegisterAPI");
 require("dotenv").config();
 
 app.use(cors());
@@ -14,6 +14,8 @@ app.use(express.json());
 
 // login
 app.use("/login", login);
+
+app.use("/register", register);
 
 const PORT = process.env.PORT || 6000;
 const DBURL = process.env.DB_URL;

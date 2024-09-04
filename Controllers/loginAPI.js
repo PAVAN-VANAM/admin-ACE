@@ -1,4 +1,4 @@
-const { User } = require("../Models/login.js");
+const { User } = require("../Models/loginModel.js");
 const express = require("express");
 const router = express.Router();
 
@@ -13,21 +13,19 @@ router.use(express.json());
 router.use(timeLog);
 
 // Login endpoint
-router.post("/", async (req, res) => {
+router.get("/", async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    /* const user = await User.findOne({ email });
+    const user = await User.findOne({ email });
     if (!user) {
       return res.status(400).json({ msg: "Invalid credentials" });
     }
 
-    if (password == user.password) {
+    if (password != user.password) {
       // Simple password comparison, consider using bcrypt for production
-      return res.status(200).json({ msg: "valid credentials" });
-    } */
-
-    res.send("valid credentials" + password + "=" + email);
+      return res.status(200).json({ msg: "Invalid credentials" });
+    }
 
     /* // Generate JWT token
     const token = jwt.sign(
@@ -37,14 +35,14 @@ router.post("/", async (req, res) => {
         expiresIn: "1h",
       }
     );
+    */
 
     // Respond with the token, name, and department
     res.status(200).json({
       msg: "Authentication Successful",
       //token,
       name: user.name,
-      department: user.department,
-    }); */
+    });
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server error");
