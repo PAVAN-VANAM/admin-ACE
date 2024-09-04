@@ -17,7 +17,9 @@ router.get("/", async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const user = await User.findOne({ email });
+    // Use lean() for faster retrieval without creating full Mongoose documents
+    const user = await User.findOne({ email }).lean();
+
     if (!user) {
       return res.status(400).json({ msg: "Invalid credentials" });
     }
