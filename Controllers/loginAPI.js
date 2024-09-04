@@ -8,6 +8,8 @@ const timeLog = (req, res, next) => {
   next();
 };
 
+router.use(express.json());
+
 router.use(timeLog);
 
 // Login endpoint
