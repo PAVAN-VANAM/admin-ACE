@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const { User } = require("../models/login");
+const { User } = require("../models/login.js");
 // middleware that is specific to this router
 const timeLog = (req, res, next) => {
   console.log("Time: ", Date.now());
