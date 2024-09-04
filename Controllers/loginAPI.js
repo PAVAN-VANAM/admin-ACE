@@ -17,7 +17,7 @@ router.post("/", async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const user = await User.findOne({ email });
+    /* const user = await User.findOne({ email });
     if (!user) {
       return res.status(400).json({ msg: "Invalid credentials" });
     }
@@ -25,7 +25,9 @@ router.post("/", async (req, res) => {
     if (password == user.password) {
       // Simple password comparison, consider using bcrypt for production
       return res.status(200).json({ msg: "valid credentials" });
-    }
+    } */
+
+    res.send("valid credentials" + password + "=" + email);
 
     /* // Generate JWT token
     const token = jwt.sign(
