@@ -2,9 +2,11 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const login = require("./Controllers/loginAPI");
 // use express module as app
 const app = express();
 
+require("dotenv").config();
 const corsconfig = {
   origin: "*",
   Credential: true,
@@ -15,11 +17,9 @@ app.use(cors(corsconfig));
 // Middleware to parse JSON request bodies
 app.use(express.json());
 
-const login = require("./Controllers/loginAPI");
 // login
 app.use("/login", login);
 
-require("dotenv").config();
 
 const PORT = process.env.PORT || 6000;
 const DBURL = process.env.DB_URL;
