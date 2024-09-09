@@ -13,7 +13,7 @@ router.use(express.json());
 router.use(timeLog);
 
 // Login endpoint
-router.get("/", async (req, res) => {
+router.post("/", async (req, res) => {
   const { email, password } = req.body;
 
   try {
@@ -29,21 +29,20 @@ router.get("/", async (req, res) => {
       return res.status(200).json({ msg: "Invalid credentials" });
     }
 
-    /* // Generate JWT token
-    const token = jwt.sign(
+    // Generate JWT token
+    /* const token = jwt.sign(
       { userId: user._id, name: user.name },
       process.env.JWT_SECRET || "your_jwt_secret",
       {
         expiresIn: "1h",
       }
-    );
-    */
+    ); */
 
     // Respond with the token, name, and department
     res.status(200).json({
       msg: "Authentication Successful",
-      //token,
       name: user.name,
+      department: user.department,
     });
   } catch (err) {
     console.error(err.message);
