@@ -2,19 +2,16 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const { User } = require("../Models/loginModel.js");
+const { User } = require("./Models/loginModel");
 // use express module as app
 const app = express();
-const register = require("./Controllers/RegisterAPI");
 require("dotenv").config();
 
 app.use(cors());
 // Middleware to parse JSON request bodies
 app.use(express.json());
 
-app.use("/register", register);
-
-const PORT = process.env.PORT || 6000;
+const PORT = process.env.PORT || 3000;
 const DBURL = process.env.DB_URL;
 
 const connect = async () => {
@@ -35,10 +32,11 @@ app.listen(PORT, () => {
   connect();
 });
 
-app.post("/login", async (req, res) => {
+app.get("/login", async (req, res) => {
   const { email, password } = req.body;
   if (!email || !password) {
-    res.send("No email ");
+    res.send({ msg: "No email " });
+    return;
   }
   try {
     // Use lean() for faster retrieval without creating full Mongoose documents
