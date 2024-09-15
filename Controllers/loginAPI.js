@@ -15,7 +15,9 @@ router.use(timeLog);
 // Login endpoint
 router.post("/", async (req, res) => {
   const { email, password } = req.body;
-
+  if (!email || !password) {
+    res.send("No email ");
+  }
   try {
     // Use lean() for faster retrieval without creating full Mongoose documents
     const user = await User.findOne({ email }).lean();
